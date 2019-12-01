@@ -3,7 +3,7 @@ package com.fox.leetcode;
 import com.alibaba.fastjson.JSON;
 
 /**
- * description
+ * description:两数之和
  * author foxalready
  * created 2019-12-01 23:13
  **/
