@@ -1,5 +1,7 @@
 package com.fox.leetcode;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * description:反转链表
  * author foxalready
@@ -9,21 +11,36 @@ public class Problem206 {
 
     public static void main(String[] args) {
 
-
+        Problem206 problem206 = new Problem206();
+        problem206.solute();
     }
 
-    private ListNode solute() {
+    private void solute() {
         ListNode listNode1 = new ListNode(1);
         ListNode listNode2 = new ListNode(2);
         ListNode listNode3 = new ListNode(3);
         ListNode listNode4 = new ListNode(4);
         ListNode listNode5 = new ListNode(5);
 
-        listNode2 = listNode1.next;
-        listNode3 = listNode2.next;
-        listNode4 = listNode3.next;
-        listNode5 = listNode4.next;
-        return null;
+        listNode1.next = listNode2;
+        listNode2.next = listNode3;
+        listNode3.next = listNode4;
+        listNode4.next = listNode5;
+
+//        while (listNode1 != null) {
+//            System.out.println(listNode1.val);
+//            listNode1 = listNode1.next;
+//        }
+
+
+        ListNode reverseList = reverseList(listNode1);
+
+        while (reverseList != null) {
+            System.out.println(reverseList.val);
+            reverseList = reverseList.next;
+        }
+
+
     }
 
     /**
@@ -41,7 +58,32 @@ public class Problem206 {
      */
     private ListNode reverseList(ListNode head) {
 
-        return null;
+        if (head == null) {
+            return null;
+        }
+
+        if (head.next == null) {
+            return head;
+        }
+
+        //链表前面的指针
+        ListNode prev = null;
+        //链表当前的指针
+        ListNode curr = head;
+
+        //每次循环，都将当前指针指向它前面的节点，然后当前节点和前节点后移
+        while (curr != null) {
+            //临时节点，暂存当前节点的下一节点，用于后移
+            ListNode tmpNode = curr.next;
+            //将当前节点指向它前面的节点
+            curr.next = prev;
+            //前指针后移
+            prev = curr;
+            //当前指针后移
+            curr = tmpNode;
+        }
+
+        return prev;
     }
 
 
